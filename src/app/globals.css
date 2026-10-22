@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+
+  /* Eucalyptus pine — primary */
+  --color-pine-50: #f2f7f4;
+  --color-pine-100: #e0ede5;
+  --color-pine-200: #c2dccc;
+  --color-pine-300: #98c2a8;
+  --color-pine-400: #68a381;
+  --color-pine-500: #478764;
+  --color-pine-600: #346b4e;
+  --color-pine-700: #2a5640;
+  --color-pine-800: #1d4534;
+  --color-pine-900: #123528;
+  --color-pine-950: #0a251c;
+
+  /* Wattle gold — accent */
+  --color-wattle-50: #fdf9ec;
+  --color-wattle-100: #f9efcb;
+  --color-wattle-200: #f3dd94;
+  --color-wattle-300: #ecc55d;
+  --color-wattle-400: #e6ae38;
+  --color-wattle-500: #df9223;
+  --color-wattle-600: #c2711b;
+  --color-wattle-700: #a15319;
+
+  /* Coral — warm secondary accent */
+  --color-coral-50: #fef5f0;
+  --color-coral-100: #fce7dc;
+  --color-coral-200: #f8ccb8;
+  --color-coral-300: #f3a586;
+  --color-coral-400: #eb7a52;
+  --color-coral-500: #e05a32;
+  --color-coral-600: #cc4523;
+  --color-coral-700: #aa371f;
+
+  /* Warm cream backgrounds */
+  --color-cream-50: #fdfcf9;
+  --color-cream-100: #faf6ef;
+  --color-cream-200: #f3ecdd;
+  --color-cream-300: #e9dec7;
+
+  /* Ink — pine-tinted neutrals */
+  --color-ink-50: #f4f6f5;
+  --color-ink-100: #e4eae7;
+  --color-ink-200: #c6d1cb;
+  --color-ink-300: #9fb1a8;
+  --color-ink-400: #748c81;
+  --color-ink-500: #547065;
+  --color-ink-600: #40594f;
+  --color-ink-700: #354841;
+  --color-ink-800: #26352f;
+  --color-ink-900: #1a2521;
+  --color-ink-950: #101815;
+
+  --shadow-soft: 0 1px 2px rgb(18 53 40 / 0.04), 0 8px 24px rgb(18 53 40 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(18 53 40 / 0.06), 0 16px 40px rgb(18 53 40 / 0.14);
+
+  --animate-marquee: marquee 36s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream-100);
+  color: var(--color-ink-900);
+}
+
+::selection {
+  background-color: var(--color-wattle-300);
+  color: var(--color-pine-950);
+}
+
+/* Visible, accessible focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--color-wattle-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Subtle grain texture overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-300);
+  border-radius: 999px;
+  border: 2px solid var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-400);
+}
+
+/* Hide scrollbar utility for chip rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dotted paper texture for hero bands */
+.dot-grid {
+  background-image: radial-gradient(rgb(18 53 40 / 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+}
